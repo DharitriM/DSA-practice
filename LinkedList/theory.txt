@@ -84,3 +84,460 @@ For example:
 
 
 5. Tail
+    The tail is the last node.
+    head
+    ↓
+    10 → 20 → 30
+               ↑
+               tail
+    The last node's next is: null
+    
+    A custom linked lsit commonly maintain:
+        head
+        tail
+        length
+    Example: 
+        LinkedList : 10 -> 20 -> 30 -> null
+        ├── head → 10
+        ├── tail → 30
+        └── length → 3
+    keeping tail makes insertion at the end O(1).
+
+
+6. How Does Travesal Work?
+    head
+     ↓
+    10 → 20 → 30 → 40 → null
+
+    we start at head.
+        current = head
+    then repeatedly:
+        current = current.next
+    conceptually:
+        current
+         ↓
+        10 → 20 → 30 → 40 → null
+    then:
+                current
+                  ↓
+        10 → 20 → 30 → 40 → null
+    then:
+                     current
+                        ↓
+        10 → 20 → 30 → 40 → null
+    then:
+                          current
+                             ↓
+        10 → 20 → 30 → 40 → null
+    finally:
+        current = null
+    so traversal is:
+        while current != null:
+            process current
+            current = current.next
+
+    Complexity:
+        Travesal -> O(n)
+
+
+7. Why Can't We Directly Access list[3]?
+    With an array: arr[3]
+        the computer can directly calculate where index 3 is for an array.
+    With linked list:
+        10 → 20 → 30 → 40 → null
+        we don't have an index-based memory layout.
+        To reach 40:
+            head
+            ↓
+            10 → 20 → 30 → 40
+                ↑     ↑
+                step1 step2...
+        we must follow:
+            head → next → next → next
+        Therefore:
+            get(3) = O(n)
+
+
+8. Types of Linked Lists:
+    i. Singly Linked List:
+        10 → 20 → 30 → null
+        Each node has:
+            data
+            next
+
+    ii. Doubly Linked List:
+        null ← 10 ⇄ 20 ⇄ 30 → null
+        Each node has:
+            prev
+            data
+            next
+    
+    iii. Circular Singly Linked List:
+            ┌──────────────────┐
+            ↓                  │
+        10 → 20 → 30 → 40 ─────┘
+        The last node points back to the head.
+            tail.next = head
+        There is no null at the end.
+
+    iv. Circular Doubly Linked List:
+            ┌─────────────┐
+            ↓             │
+        10 ⇄ 20 ⇄ 30 ⇄ 40
+        ↑                 ↓
+        └─────────────────┘
+        Each node has:
+            prev
+            data
+            next
+        and:
+            head.prev = tail
+            tail.next = head
+
+
+9. Singly Linked List:
+    Structure:
+        Node
+            ├── data
+            └── next
+        Example:
+            head
+            ↓
+            10 → 20 → 30 → null
+    Advantages:
+        Simple
+        Less memory that doubly linked list
+        Efficient insertion/deletion at the head/beginning
+        Dynamic size
+    Disadvantages:
+        Can't move backward
+        Searching is O(n)
+        Access by index is O(n)
+        Deleting a node often requires finding its previous node first
+
+
+10. Doubly Linked List:
+    Structure:
+        Node
+            ├── prev
+            ├── data
+            └── next
+        Example:
+            null ⇄ 10 ⇄ 20 ⇄ 30 → null
+            for node 20:
+                20.prev = 10
+                20.next = 30
+            this allows movement in both directions.
+    Advantages:
+        Forward and backward traversal
+        Easier deletion when you have the node
+        Useful for browser history, undo/redo, LRU cache
+    Disadvantages:
+        More memory that singly linked list for prev
+        More pointer manipulation
+        More chances of bugs
+
+
+11. Circular Linked List: 
+    Normal singly linked list:
+        10 → 20 → 30 → null
+    Circular singly linked list:
+        10 → 20 → 30
+        ↑          ↓
+        └──────────┘
+        head = 10
+        tail = 30
+        tail.next = head
+        so 30.Next = 10
+        There is no null at the end.
+    Why use it?
+        useful when data needs to repeat cyclically.
+        example:
+            Round-robin scheduling
+            Multiplayer turn systems
+            Circular buffer
+            Repeating playlist
+
+
+12. Circular Doubly Linked List:
+    Normal doubly linked list:
+        10 ⇄ 20 ⇄ 30 → null
+    Circular doubly linked list:
+        10 ⇄ 20 ⇄ 30
+        ↑          ↓
+        └──────────┘
+        head = 10
+        tail = 30
+        tail.next = head
+        so 30.Next = 10
+        head.prev = tail
+        so 10.prev = 30
+    Important relationship:
+        head.prev = tail
+        tail.next = head
+    This gives you:
+        forward traversal
+        backward traversal
+        circular movement
+    Why use it?
+        useful when data needs to repeat cyclically.
+        example:
+            Browser history
+            Undo/Redo
+            LRU cache
+            Multiplayer turn systems
+
+
+13. Time Complexity You Must Know
+Singly Linked List
+Assuming head and tail are maintained:
+| Operation                        | Complexity |
+| -------------------------------- | ---------: |
+| Access by index                  |       O(n) |
+| Search                           |       O(n) |
+| Insert beginning                 |       O(1) |
+| Insert end                       |       O(1) |
+| Delete beginning                 |       O(1) |
+| Delete end                       |       O(n) |
+| Insert after known node          |       O(1) |
+| Delete after known previous node |       O(1) |
+| Traverse                         |       O(n) |
+
+    Why is delete-last O(n)?
+    Because:
+        10 → 20 → 30 → 40
+        To remove 40, we need the node before it:
+        30
+        We must traverse to find it.
+
+
+14. Doubly Linked List Complexity
+With head and tail:
+| Operation                | Complexity |
+| ------------------------ | ---------: |
+| Access by index          |       O(n) |
+| Search                   |       O(n) |
+| Insert beginning         |       O(1) |
+| Insert end               |       O(1) |
+| Delete beginning         |       O(1) |
+| Delete end               |       O(1) |
+| Insert before known node |       O(1) |
+| Insert after known node  |       O(1) |
+| Delete known node        |       O(1) |
+| Traverse                 |       O(n) |
+    The big advantage is:
+        A doubly linked list can move backward because each node stores prev.
+
+
+15. Important Pointer Concepts
+    This is where linked-list coding becomes tricky.
+    Suppose:
+        10 → 20 → 30 → 40
+    and:
+        current = 20
+    Then:
+        current
+        ↓
+        20 → 30
+    If you do:
+        current.next
+        you get the node containing 30.
+    If you do:
+        current.next.next
+        you reach 40.
+    Therefore:
+        current.next.next
+    means:
+        Go to the next node, then go to that node's next node.
+
+
+16. The Most Important Linked List Pattern
+    will be in repeatedly use:
+        current = head
+
+        while current != null:
+            ...
+            current = current.next
+
+
+17. Insertion:
+    Suppose:
+        10 → 20 → 40
+    We want to insert 30 after 20:
+    Before:
+        20 → 40
+    We need to create a new node:
+        30
+    Then:
+        30.next = 40
+        20.next = 30
+    Result:
+        10 → 20 → 30 → 40
+
+
+18. Deletion:
+    Suppose:
+        10 → 20 → 30 → 40
+    We want to delete 20:
+    Before:
+        10 → 20 → 30 → 40
+    We need:
+        10 → 30
+    So:
+        10.next = 30
+    Result:
+        10 → 30 → 40
+
+
+19. Reversing a Linked List:
+    10 → 20 → 30 → 40
+    result: 40 → 30 → 20 → 10
+
+    classic solution uses 3 pointers:
+        prev
+        current
+        next
+    Initially:
+        prev = null
+        current = head
+    Then:
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    Finally:
+        head = prev
+
+
+20. Fast and Slow Pointers:
+    use two pointers:
+        fast
+        slow
+    Typically:
+        slow = slow.next
+        fast = fast.next.next
+    because:
+        fast is twice as fast as slow
+    This is useful for:
+        Find middle
+        10 → 20 → 30 → 40 → 50
+                  ↑
+                 slow
+        When fast reaches the end, slow is around the middle.
+    Detect cycle
+        Use Floyd's Cycle Detection Algorithm.
+    Find cycle starting point
+        Also possible using slow/fast pointers.
+
+21. Cycle Detection:
+    Suppose:
+        10 → 20 → 30 → 40
+             ↑         ↓
+             └─────────┘
+        There is a cycle.
+    With:
+        slow = slow.next
+        fast = fast.next.next
+    if a cycle exists, eventually:
+        slow == fast
+    This is called:
+        Floyd's Cycle Detection Algorithm
+    Complexity:
+        Time: O(n)
+        Space: O(1)
+
+
+22. Finding the Middle
+    Example:
+        10 → 20 → 30 → 40 → 50
+    Use:
+        slow -> one step
+        fast -> two steps
+    Eventually:
+        slow = 30
+        So middle is 30
+    For an even-sized list:
+        10 → 20 → 30 → 40  it will be 20 or 30 depending on requirement
+    For an odd-sized list:
+        10 → 20 → 30 → 40 → 50  it will be 30
+
+
+23. Dummy Node:
+    A dummy node is a fake node placed before the head.
+    Instead of:
+        head
+        ↓
+        10 → 20 → 30
+    We create:
+        dummy -> 10 → 20 → 30
+    Why?
+        It simplifies edge cases involving the first node.
+    Very useful for:
+        deleting nodes
+        merging lists
+        inserting nodes
+        removing duplicates
+        partitioning lists
+
+
+24. Important Edge Cases:
+    Empty list:
+        head = null
+    One node:
+        10 -> null
+    Two nodes:
+        10 -> 20 -> null
+    Insert at beginning:
+        new -> old head
+    Delete head:
+        head = head.next
+    Delete tail:
+        Need to find the previous node in singly linked list.
+    Position out of range:
+        Example:
+            10 -> 20 -> 30
+        Trying:
+            get(10)
+        must be handled.
+
+
+
+
+                    LINKED LIST
+                         │
+          ┌──────────────┴──────────────┐
+          ↓                             ↓
+    SINGLY LINKED LIST            DOUBLY LINKED LIST
+          │                             │
+          ↓                             ↓
+      Node class                    Node class
+      Head/Tail                     Prev/Next
+      Traversal                     Traversal
+      Add First                     Add First
+      Add Last                      Add Last
+      Remove First                  Remove First
+      Remove Last                   Remove Last
+      Get                           Get
+      Set                           Set
+      Insert                        Insert
+      Remove                        Remove
+      Clear                         Clear
+      Search                        Search
+          │
+          ↓
+     INTERVIEW PATTERNS
+          │
+          ├── Reverse
+          ├── Middle
+          ├── Nth from end
+          ├── Fast/Slow
+          ├── Cycle detection
+          ├── Merge
+          ├── Duplicate removal
+          └── Palindrome
+                         │
+                         ↓
+               CIRCULAR LINKED LIST
+                         │
+                         ↓
+              INTERVIEW QUESTIONS
