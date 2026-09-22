@@ -1,0 +1,48 @@
+Data: any random facts about anything
+Information: related data for a thing
+
+Program / software : set of instructions/code with data to run and provide desired result
+Process: running program
+
+
+
+Data Structure: way of organizing data in computer's memory so that it can be used efficiently by program code.
+
+DBMS: data structure where data is getting arranged and stored in harddisk for storing purpose
+
+hdd: hard disk drive
+ssd: solid state drive (new)
+
+
+
+Algorithm: Process or set of rules followed in calculation or solving other solutions
+
+Properties of Algorithm:
+    input: (optional) given data to the algorithm to work the process on
+    output: (must) result -> to diaplay / to be stored / to pass to next algorithm
+    definiteness: the steps should be clear to understand
+    finiteness: (should not be infinite) finite number of steps
+
+
+
+
+Pseudocode: (false code) (not run by computer) (human readable) (no standard syntax) used to write algorithm steps with plain language
+Example of pseudocode:
+    problem/purpose: find the sum of two numbers
+    name: sum
+        sum(a,b):
+            1. input a, b
+            2. sum <- a + b
+            3. display sum
+
+Drawbacks of pseudocode:
+    can not be understandable by all
+    can not be shared
+    not fully clear communication on steps
+    language dependent
+
+
+Flowchart: diagrammatic representation of an algorithm
+    American National Standard Institute (ANSI) set the standards for flowcharts and their symbols in the 1960s
+    human reading not machine reading
+    ![flowchart symbols](image.png)
