@@ -1,6 +1,48 @@
 Data: any random facts about anything
 Information: related data for a thing
 
+forms of data:
+    short / smple data : 
+        number
+        string
+    multimedia data:
+        audio
+        image
+        video
+
+types of Data (datatype):
+    primitive: (in-built / data item)
+        number:
+            integer
+            real
+                float
+                double
+            complex
+        boolean:
+            true
+            false
+        string
+        None
+    non-primitive: (data group / multiple data)
+        tuple
+        set
+        list
+        Array
+        LinkedList
+        Stack
+        Queue
+        Tree
+        Graph
+        Map / Associated array / hash table / dictionary
+        multimap
+        bag
+
+
+
+Properties of Data structure:
+    1. Linear: when data is in the form one by one with out relationship in between
+
+
 Program / software : set of instructions/code with data to run and provide desired result
 Process: running program
 
@@ -22,6 +64,14 @@ Properties of Algorithm:
     output: (must) result -> to diaplay / to be stored / to pass to next algorithm
     definiteness: the steps should be clear to understand
     finiteness: (should not be infinite) finite number of steps
+
+Why DSA:
+    to build efficient program
+    easy to logic
+    to increase program execution speed
+    to set reusability of data
+    to improve abstraction of program
+    to solve real world problems
 
 
 
@@ -46,3 +96,16 @@ Flowchart: diagrammatic representation of an algorithm
     American National Standard Institute (ANSI) set the standards for flowcharts and their symbols in the 1960s
     human reading not machine reading
     ![flowchart symbols](image.png)
+    Flowchart Not suitable for
+        flowchart can not explain software modelling 
+        not suitable for event explaining
+        not suitable for OOP software
+        not suitable for stakeholder (except developer like tester, manager, client)
+        not suitable for behavioural / functionality study
+
+
+
+UML: Unified Modelling Language
+    is a graphical language (with diagrams)
+    helpful for visualising whole software system including tech and non-tech things
+    UML is system independent used for visualising and modelling a software and business part for the software
